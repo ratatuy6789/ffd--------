@@ -1,0 +1,400 @@
+/* ========== СЕКЦИЯ ПОДБОРА СТРИЖКИ (Y2K-БРАУЗЕР) ========== */
+#match {
+    width: 100%;
+    padding: 6rem 4rem;
+    margin: 0;
+}
+
+#match h2 {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    color: var(--lemon-lime);
+    border-bottom: 2px dashed var(--fresh-green);
+    display: inline-block;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 15px rgba(52, 205, 63, 0.4);
+}
+
+/* ========== ОКНО БРАУЗЕРА ========== */
+.matcher-window {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    border: 2px solid #34CD3F;
+    box-shadow: 
+        inset 0 0 0 1px rgba(8, 25, 16, 1),
+        6px 6px 0 rgba(0, 0, 0, 0.7);
+    font-family: var(--font-grunge);
+}
+
+/* ========== ШАПКА БРАУЗЕРА ========== */
+.browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: linear-gradient(to bottom, #4a4a4a, #2f2f2f);
+    border-bottom: 2px solid #081910;
+    flex-wrap: wrap;
+}
+
+.browser-tabs {
+    display: flex;
+    gap: 3px;
+}
+
+.tab {
+    padding: 4px 12px;
+    background: #2aa832;
+    color: #081910;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid #081910;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.4), inset 1px 1px 0 rgba(255,255,255,0.3);
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #34CD3F;
+}
+
+.browser-controls {
+    display: flex;
+    gap: 4px;
+    color: #34CD3F;
+}
+
+.browser-controls span {
+    padding: 2px 6px;
+    border: 1px solid rgba(52, 205, 63, 0.5);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.url-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    background: #081910;
+    border: 1px solid #34CD3F;
+    color: #34CD3F;
+    font-size: 0.75rem;
+    min-width: 200px;
+}
+
+.url-bar input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #34CD3F;
+    font-family: var(--font-grunge);
+    font-size: 0.75rem;
+    outline: none;
+}
+
+.browser-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.browser-buttons span {
+    padding: 3px 8px;
+    background: #4a4a4a;
+    border: 1px solid #081910;
+    color: #34CD3F;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.5), inset 1px 1px 0 rgba(255,255,255,0.2);
+}
+
+/* ========== ВВОДНЫЙ ТЕКСТ ========== */
+.match-intro {
+    padding: 1.2rem 2rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-bottom: 2px dashed rgba(52, 205, 63, 0.3);
+    background: #081910;
+}
+
+/* ========== ТЕЛО БРАУЗЕРА ========== */
+.browser-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 2rem;
+    background: #0f1a12;
+}
+
+/* ========== БЛОК В БРАУЗЕРЕ (окно) ========== */
+.matcher-window-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.window-block-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    background: #34CD3F;
+    color: #081910;
+    font-family: var(--font-grunge);
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid #081910;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.4), inset 1px 1px 0 rgba(255,255,255,0.3);
+}
+
+.window-block-title::before {
+    content: '▣';
+    margin-right: 8px;
+}
+
+.window-block-title::after {
+    content: '✕';
+    background: #2aa832;
+    padding: 0 6px;
+    border: 1px solid #081910;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.match-block-title {
+    font-family: 'UnifrakturCook', var(--font-cyber);
+    font-size: 1.6rem;
+    color: var(--lemon-lime);
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 15px rgba(169, 237, 61, 0.5);
+}
+
+/* ========== СЕТКА КАРТОЧЕК В БЛОКАХ ========== */
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.match-card {
+    padding: 1rem 1.2rem;
+    background: #081910;
+    border: 2px solid rgba(52, 205, 63, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.match-card:hover {
+    border-color: var(--lava-red);
+    box-shadow: 0 0 20px rgba(228, 34, 23, 0.4);
+}
+
+
+.match-card p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+.match-card h4 {
+    font-family: var(--font-grunge);
+    font-size: 1rem;
+    /* Светлый фиолетовый Ripe Plum */
+    color: #B65FD1;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    /* Свечение в тон */
+    text-shadow: 
+        0 0 10px rgba(182, 95, 209, 0.9),
+        0 0 20px rgba(182, 95, 209, 0.6),
+        0 0 30px rgba(182, 95, 209, 0.4);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+/* ========== РАЗБОР СТРИЖЕК (ФОТО КВАДРАТ + ТЕКСТ) ========== */
+.match-haircut {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    background: #081910;
+    border: 2px solid rgba(52, 205, 63, 0.4);
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.match-haircut:hover {
+    border-color: var(--fresh-green);
+}
+
+/* Реверс — фото справа */
+.match-haircut-reverse {
+    grid-template-columns: 1fr 280px;
+}
+
+.match-haircut-reverse .match-haircut-image {
+    order: 2;
+}
+
+.match-haircut-reverse .match-haircut-info {
+    order: 1;
+}
+
+/* Квадратное фото */
+.match-haircut-image {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 2px solid #34CD3F;
+    position: relative;
+}
+
+.match-haircut-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) contrast(1.05) saturate(0.9);
+    transition: filter 0.4s ease;
+}
+
+.match-haircut:hover .match-haircut-image img {
+    filter: brightness(1) contrast(1.05) saturate(1);
+}
+
+.match-haircut-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("../img/noise.png"); /* PNG-шум вместо дорогого SVG feTurbulence */
+    opacity: 0.3;
+}
+
+.match-haircut-info h4 {
+    font-family: 'UnifrakturCook', var(--font-cyber);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: #D08FE3;
+    margin-bottom: 0.8rem;
+    letter-spacing: 3px;
+    text-shadow: 
+        0 0 10px rgba(208, 143, 227, 0.9),
+        0 0 20px rgba(208, 143, 227, 0.6),
+        0 0 30px rgba(208, 143, 227, 0.4);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* При наведении — чуть светлее */
+.match-haircut:hover .match-haircut-info h4 {
+    color: #E0A8F0;
+    text-shadow: 
+        0 0 15px rgba(224, 168, 240, 1),
+        0 0 30px rgba(224, 168, 240, 0.8),
+        0 0 50px rgba(224, 168, 240, 0.5);
+}
+
+.match-haircut-info p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.match-haircut-info p strong {
+    color: var(--fresh-green);
+    text-shadow: 0 0 5px rgba(52, 205, 63, 0.4);
+}
+
+.match-haircut-info ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+}
+
+.match-haircut-info ul li {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.3rem;
+    opacity: 0.9;
+}
+
+.match-haircut-info ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--fresh-green);
+    text-shadow: 0 0 5px var(--fresh-green);
+}
+
+.match-haircut-info ul li strong {
+    color: var(--lemon-lime);
+}
+
+/* ========== НИЖНЯЯ ПОЛОСА ========== */
+.browser-footer {
+    padding: 6px 12px;
+    background: #081910;
+    color: #34CD3F;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-align: right;
+    border-top: 2px solid #34CD3F;
+    text-transform: uppercase;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 768px) {
+    #match {
+        padding: 3rem 1rem;
+    }
+
+    .browser-body {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .browser-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .url-bar {
+        min-width: 100%;
+    }
+
+    .match-haircut,
+    .match-haircut-reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .match-haircut-reverse .match-haircut-image,
+    .match-haircut-reverse .match-haircut-info {
+        order: initial;
+    }
+
+    .match-haircut-image {
+        max-width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .match-block-title {
+        font-size: 1.3rem;
+    }
+
+    .match-haircut-info h4 {
+        font-size: 1.4rem;
+    }
+}

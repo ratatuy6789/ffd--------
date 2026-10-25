@@ -1,0 +1,282 @@
+/* ========== СЕКЦИЯ СТРИЖЕК ========== */
+#haircuts {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.haircut-card {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 800px;
+    height: 800px;
+    border: 1px solid rgba(55, 240, 92, 0.3);
+    border-radius: 10px;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(55, 240, 92, 0.1);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Подсветка карточки — Murky Magenta */
+.haircut-card:hover {
+    border-color: var(--murky);
+    box-shadow: 
+        0 10px 40px rgba(50, 22, 44, 0.9),
+        0 0 80px rgba(50, 22, 44, 0.7),
+        0 0 120px rgba(50, 22, 44, 0.5);
+}
+
+.haircut-card:nth-child(2) { animation-delay: 0.1s; }
+.haircut-card:nth-child(3) { animation-delay: 0.3s; }
+.haircut-card:nth-child(4) { animation-delay: 0.5s; }
+.haircut-card:nth-child(5) { animation-delay: 0.7s; }
+
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Только дешёвые фильтры; зелёный «Alien»-тон даёт оверлей ниже */
+    filter: brightness(0.5) contrast(1.2);
+    transition: filter 0.5s ease, transform 0.5s ease;
+    z-index: 1;
+}
+
+/* Зелёный тон через multiply-оверлей вместо дорогих sepia/hue-rotate/saturate */
+.haircut-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #37F05C;
+    mix-blend-mode: multiply;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1; /* над фото, под .card-overlay (2) и .card-content (3) */
+    transition: background 0.5s ease, opacity 0.5s ease;
+}
+
+/* При наведении карточка уходит в магента-оттенок */
+.haircut-card:hover .card-bg {
+    filter: brightness(0.6) contrast(1.2);
+    transform: scale(1.02);
+}
+
+.haircut-card:hover::after {
+    background: #32162c;
+    opacity: 0.45;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0.4) 0%, 
+        rgba(0, 0, 0, 0.8) 60%,
+        rgba(0, 0, 0, 0.98) 100%
+    );
+    z-index: 2;
+    transition: background 0.5s ease;
+}
+
+/* При наведении на карточку градиент уходит в Murky Magenta */
+.haircut-card:hover .card-overlay {
+    background: linear-gradient(
+        to bottom, 
+        rgba(50, 22, 44, 0.3) 0%, 
+        rgba(50, 22, 44, 0.7) 60%,
+        rgba(0, 0, 0, 0.98) 100%
+    );
+}
+
+.card-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    align-self: flex-end;
+    text-align: right;
+    margin-bottom: 2rem;
+    max-width: 280px;
+    width: 100%;
+}
+
+.card-title h3 {
+    font-family: 'UnifrakturCook', var(--font-cyber);
+    font-size: clamp(2rem, 6vw, 4rem); /* чуть увеличил, чтобы готика смотрелась */
+    font-weight: 700;
+    color: var(--fresh-green);
+    text-shadow: 
+        2px 2px 5px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(52, 205, 63, 0.7);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+/* При наведении на карточку заголовок уходит в магента */
+.haircut-card:hover .card-title h3 {
+    color: #E8A0D8;
+    text-shadow: 
+        2px 2px 5px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(232, 160, 216, 0.8);
+}
+
+.card-title .subtitle {
+    font-size: 1.1rem;
+    color: var(--slime);
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 10px rgba(55, 240, 92, 0.6);
+    letter-spacing: 1px;
+    transition: color 0.4s ease;
+}
+
+.haircut-card:hover .card-title .subtitle {
+    color: #D8A0C8;
+}
+
+.card-title p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* ========== ПОДТИПЫ ========== */
+.subtypes-container {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 350px;
+}
+
+.subtype-item {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 220px;
+    transition: z-index 0.3s;
+    cursor: pointer;
+}
+
+.subtype-item:hover {
+    z-index: 100;
+}
+/* ========== ДОП. ФОТО (ПОДТИПЫ) — БЕЗ ФИОЛЕТОВОГО ========== */
+.subtype-img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid rgba(52, 205, 63, 0.5);
+    /* Только затемнение, без оттенка и hue-rotate */
+    filter: brightness(0.8) contrast(1.05) saturate(0.95);
+    transition: filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 
+        3px 3px 12px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(52, 205, 63, 0.2);
+    position: relative;
+    display: block;
+}
+
+.subtype-item:hover .subtype-img {
+    /* При наведении — светлее, но без фиолетового */
+    filter: brightness(1) contrast(1.05) saturate(1);
+    border-color: var(--fresh-green);
+    box-shadow: 
+        0 0 25px rgba(52, 205, 63, 0.8),
+        0 0 50px rgba(52, 205, 63, 0.4);
+}
+.subtype-item span {
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--slime);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, background 0.3s ease;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 3px 6px;
+    border-radius: 2px;
+    white-space: nowrap;
+    border: 1px solid rgba(55, 240, 92, 0.4);
+    text-shadow: 0 0 5px rgba(55, 240, 92, 0.5);
+}
+
+/* При наведении на подтип — подсветка магента */
+.subtype-item:hover span {
+    color: #E8A0D8;
+    background: rgba(50, 22, 44, 0.95);
+    border-color: var(--murky);
+    text-shadow: 0 0 8px rgba(232, 160, 216, 0.7);
+    box-shadow: 0 0 15px rgba(50, 22, 44, 0.9);
+}
+
+/* ========== РАСПОЛОЖЕНИЕ ПОДТИПОВ ========== */
+.card-mullet .subtypes-container .subtype-item:nth-child(1) { bottom: 5px; left: 15%; transform: rotate(0deg); }
+.card-mullet .subtypes-container .subtype-item:nth-child(2) { bottom: 50px; right: 3%; transform: rotate(0deg); }
+.card-mullet .subtypes-container .subtype-item:nth-child(3) { bottom: 250px; left: 0%; transform: rotate(0deg); }
+
+.card-wolf .subtypes-container .subtype-item:nth-child(1) { bottom: -45px; left: 10%; transform: rotate(0deg); }
+.card-wolf .subtypes-container .subtype-item:nth-child(2) { top: -75px; left: 0%; transform: rotate(0deg); }
+.card-wolf .subtypes-container .subtype-item:nth-child(3) { top: 80px; right: 5%; transform: rotate(0deg); }
+
+.card-mohawk .subtypes-container .subtype-item:nth-child(1) { bottom: 80px; left: 5%; transform: rotate(0deg); }
+.card-mohawk .subtypes-container .subtype-item:nth-child(2) { top: 20px; right: 5%; transform: rotate(0deg); }
+
+.card-pixie .subtypes-container .subtype-item:nth-child(1) { bottom: 120px; left: 5%; transform: rotate(0deg); }
+.card-pixie .subtypes-container .subtype-item:nth-child(2) { top: 5px; right: 5%; transform: rotate(0deg); }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .card-content { padding: 1.5rem; }
+    .card-title { align-self: center; text-align: center; max-width: 100%; }
+    .haircut-card { height: auto; min-height: 700px; }
+    
+    .subtypes-container { 
+        min-height: auto; 
+        display: flex; 
+        justify-content: center; 
+        gap: 1.5rem; 
+        flex-wrap: wrap; 
+        padding: 2rem 0; 
+        align-items: flex-end; 
+    }
+    
+    .subtype-item { 
+        position: relative !important; 
+        bottom: auto !important; 
+        left: auto !important; 
+        right: auto !important; 
+        top: auto !important; 
+        transform: none !important; 
+        margin: 0 auto; 
+        width: 140px; 
+    }
+    
+    .subtype-img { width: 140px; height: 140px; }
+}

@@ -1,0 +1,268 @@
+/* ========== ГЛАВНЫЙ РАЗДЕЛ: ХАОС-КОЛЛАЖ ========== */
+#hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--black);
+    padding: 70px 0 0 0;
+    overflow: hidden;
+}
+
+/* ========== БАЗОВЫЙ СТИЛЬ КАРТОЧКИ ========== */
+.hero-card {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid var(--slime-dim);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease, z-index 0.3s ease;
+    cursor: pointer;
+}
+
+.hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Только дешёвые фильтры; зелёный «Alien»-тон даёт оверлей ниже */
+    filter: brightness(0.7) contrast(1.2);
+    transition: filter 0.4s ease;
+}
+
+/* Зелёный тон через multiply-оверлей вместо дорогих sepia/hue-rotate/saturate */
+.hero-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #37F05C;
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+    pointer-events: none;
+    transition: background 0.4s ease, opacity 0.4s ease;
+}
+
+.hero-card:hover {
+    z-index: 100;
+    border-color: var(--murky);
+    box-shadow:
+        0 0 40px rgba(50, 22, 44, 0.9),
+        0 0 80px rgba(50, 22, 44, 0.6);
+}
+
+.hero-card:hover img {
+    filter: brightness(0.95) contrast(1.2);
+}
+
+/* При наведении — яркий сливово-магентовый оттенок */
+.hero-card:hover::after {
+    background: #A85EA0;
+    opacity: 0.45;
+}
+
+/* ================================================================ */
+/* РАСПОЛОЖЕНИЕ КАРТОЧЕК — КАЖДАЯ СО СВОИМ РАЗМЕРОМ И ПОЗИЦИЕЙ     */
+/* ================================================================ */
+
+/* КАРТОЧКА 1 — Большая, центральная (парень в шляпе) */
+.card-1 {
+    top: 5%;
+    left: 18%;
+    width: 45%;
+    height: 60%;
+    z-index: 1;
+}
+
+/* КАРТОЧКА 2 — Вертикальная, правая (девушка в синем) */
+.card-2 {
+    top: 3%;
+    right: 2%;
+    width: 32%;
+    height: 65%;
+    z-index: 2;
+}
+
+/* КАРТОЧКА 3 — Маленькая, левый верх (с краю) */
+.card-3 {
+    top: 8%;
+    left: 1%;
+    width: 18%;
+    height: 30%;
+    z-index: 3;
+}
+
+/* КАРТОЧКА 4 — Широкая горизонтальная, снизу слева (накладывается на 1) */
+.card-4 {
+    bottom: 2%;
+    left: 20%;
+    width: 42%;
+    height: 35%;
+    z-index: 4;
+}
+
+/* КАРТОЧКА 5 — Маленькая, снизу справа (накладывается на 2) */
+.card-5 {
+    bottom: 5%;
+    right: 8%;
+    width: 28%;
+    height: 30%;
+    z-index: 5;
+}
+
+/* КАРТОЧКА 6 — Узкая вертикальная, в центре между 1 и 2 (накладывается сверху) */
+.card-6 {
+    top: 15%;
+    left: 55%;
+    width: 15%;
+    height: 45%;
+    z-index: 6;
+}
+
+/* ========== ЗАГОЛОВОК ========== */
+.hero-main-title {
+    position: absolute;
+    top: 30%;
+    left: 2%;
+    z-index: 50;
+    font-family: var(--font-gothic);
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    font-weight: 700;
+    color: var(--slime);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-shadow: 
+        0 0 10px var(--slime),
+        0 0 30px rgba(55, 240, 92, 0.8),
+        0 0 60px rgba(55, 240, 92, 0.5),
+        2px 2px 0 #000;
+    max-width: 40%;
+    /* УБРАЛ pointer-events: none — теперь hover работает */
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* Hover для главного заголовка */
+.hero-main-title:hover {
+    color: var(--hover-pink);
+    text-shadow: 
+        0 0 10px var(--hover-pink),
+        0 0 30px rgba(232, 160, 216, 0.9),
+        0 0 60px rgba(232, 160, 216, 0.6),
+        2px 2px 0 #000;
+    cursor: pointer;
+    transform: scale(1.03);
+}
+/* ========== ПОДЗАГОЛОВОК (ЛЕВЫЙ НИЖНИЙ УГОЛ) ========== */
+.hero-main-sub {
+    position: absolute;
+    bottom: 3%;
+    left: 2%;
+    z-index: 50;
+    font-family: var(--font-modern);
+    font-size: clamp(0.7rem, 1vw, 1rem);
+    color: var(--slime);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(55, 240, 92, 0.8);
+    pointer-events: none;
+}
+
+/* ========== СЛОГАН (ПРАВЫЙ ВЕРХНИЙ УГОЛ) ========== */
+.hero-tagline {
+    position: absolute;
+    top: 8%;
+    right: 2%;
+    z-index: 50;
+    font-family: var(--font-gothic);
+    font-size: clamp(0.9rem, 1.3vw, 1.5rem);
+    color: var(--slime);
+    text-align: right;
+    line-height: 1.3;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 8px var(--slime),
+        0 0 20px rgba(55, 240, 92, 0.6);
+    pointer-events: none;
+    max-width: 30%;
+}
+
+.hero-tagline span {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 1.5em;
+    color: #E8A0D8;
+    text-shadow: 
+        0 0 10px #E8A0D8,
+        0 0 25px rgba(232, 160, 216, 0.6);
+}
+
+/* ========== ЗЕЛЁНЫЕ ЛИНИИ-ДЕКОР ========== */
+#hero::before,
+#hero::after {
+    content: '';
+    position: absolute;
+    background: var(--slime);
+    z-index: 40;
+    pointer-events: none;
+    box-shadow: 0 0 12px var(--slime), 0 0 30px rgba(55, 240, 92, 0.6);
+}
+
+#hero::before {
+    top: 70px;
+    left: 1%;
+    right: 1%;
+    height: 1px;
+}
+
+#hero::after {
+    bottom: 0;
+    left: 1%;
+    right: 1%;
+    height: 1px;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 900px) {
+    #hero {
+        min-height: auto;
+        padding: 70px 1rem 2rem;
+    }
+
+    /* На мобилках — обычная сетка без наложений */
+    .hero-card {
+        position: relative;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+        margin-bottom: 1rem;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+
+    .hero-main-title {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .hero-main-sub {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+        position: relative;
+        top: auto;
+        right: auto;
+        text-align: center;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+}

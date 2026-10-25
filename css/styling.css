@@ -1,0 +1,82 @@
+/* ========== РАЗДЕЛ: РЕКОМЕНДАЦИИ ПО УКЛАДКЕ ========== */
+#styling {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.styling-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.styling-card {
+    background: rgba(8, 25, 16, 0.7);
+    border: 1px solid rgba(52, 205, 63, 0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.styling-card:hover {
+    border-color: var(--fresh-green);
+    box-shadow: 0 0 25px rgba(52, 205, 63, 0.3);
+}
+
+.styling-card h3 {
+    font-family: 'UnifrakturCook', var(--font-cyber);
+    font-size: 1.3rem;
+    /* Светлый фиолетовый — как при наведении */
+    color: #D08FE3;
+    margin-bottom: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* Фиолетовое свечение */
+    text-shadow: 
+        0 0 10px rgba(208, 143, 227, 0.9),
+        0 0 20px rgba(208, 143, 227, 0.6),
+        0 0 30px rgba(208, 143, 227, 0.4);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* При наведении — чуть ярче */
+.styling-card:hover h3 {
+    color: #E0A8F0;
+    text-shadow: 
+        0 0 15px rgba(224, 168, 240, 1),
+        0 0 30px rgba(224, 168, 240, 0.8),
+        0 0 50px rgba(224, 168, 240, 0.5);
+}
+.styling-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.styling-card li {
+    color: var(--text-light);
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(52, 205, 63, 0.2);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.styling-card li:last-child {
+    border-bottom: none;
+}
+
+.styling-card li strong {
+    color: var(--fresh-green);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .styling-grid {
+        grid-template-columns: 1fr;
+    }
+    .styling-card {
+        padding: 1.5rem;
+    }
+}

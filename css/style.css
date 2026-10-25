@@ -1,0 +1,204 @@
+/* ========== ПЕРЕМЕННЫЕ ========== */
+:root {
+    /* Цвета */
+    --slime: #37F05C;
+    --slime-dim: #1a7a2e;
+    --murky: #32162c;
+    --black: #000000;
+    --black-soft: #0a0a0a;
+    --text-light: #D8E8D0;
+    --hover-pink: #E8A0D8; /* Новый цвет для hover */
+
+    /* Совместимость */
+    --black-bean: #000000;
+    --dark-blue: #0a0a0a;
+    --dark-green: #0a0a0a;
+    --emerald: #37F05C;
+    --silver-green: #37F05C;
+    --silver: #D8E8D0;
+    --fresh-green: #37F05C;
+    --lemon-lime: #7FFF9A;
+    --citrus: #37F05C;
+    --heliotrope: #32162c;
+    --accent: #37F05C;
+    --lava-red: #37F05C;
+    --night: #000000;
+    --night-soft: #0a0a0a;
+
+    /* ШРИФТЫ */
+    --font-gothic: 'UnifrakturCook', 'Courier New', serif;   /* Готика — для h1/h2 */
+    --font-modern: 'Cinzel', 'Courier New', serif;            /* Модерн — для h3/h4, меню */
+    --font-mono: 'Courier New', Courier, monospace;           /* Моно — для текста */
+
+    /* Совместимость */
+    --font-grunge: 'Courier New', Courier, monospace;
+    --font-cyber: 'Cinzel', 'Courier New', serif;
+}
+
+/* ========== СБРОСЫ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* ========== BODY ========== */
+body {
+    background-color: var(--black);
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(55, 240, 92, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(55, 240, 92, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(50, 22, 44, 0.5) 0%, transparent 55%);
+}
+
+/* ========== ЗЕРНО И ЦАРАПИНЫ (ОДИН ДЕШЁВЫЙ СЛОЙ) ========== */
+/* Один fixed-слой с PNG-шумом 200×200, без blend-mode и без перерисовки
+   пол-экрана при скролле; сканы-линии запечены прямо в картинку. */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9990; /* ниже меню (9997), выше всего контента */
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: url("../img/noise.png");
+    background-size: 200px 200px;
+}
+
+/* ========== ЗАГОЛОВКИ (ГОТИЧЕСКИЙ) ========== */
+h1, h2 {
+    font-family: var(--font-gothic);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.4s ease;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--slime);
+    border-bottom: 2px dashed var(--slime-dim);
+    display: inline-block;
+    margin-bottom: 2rem;
+    text-shadow: 
+        0 0 8px var(--slime),
+        0 0 20px rgba(55, 240, 92, 0.5);
+}
+
+/* ========== ПОДЗАГОЛОВКИ (МОДЕРНИСТСКИЙ) ========== */
+h3, h4 {
+    font-family: var(--font-modern);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* ========== ГЛОБАЛЬНЫЙ HOVER ДЛЯ ВСЕХ ЗАГОЛОВКОВ ========== */
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+.hero-main-title:hover,
+.card-title h3:hover,
+.match-block-title:hover,
+.match-card h4:hover,
+.match-haircut-info h4:hover,
+.styling-card h3:hover {
+    color: var(--hover-pink) !important;
+    text-shadow: 
+        0 0 10px var(--hover-pink),
+        0 0 30px rgba(232, 160, 216, 0.9),
+        0 0 60px rgba(232, 160, 216, 0.5) !important;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+/* ========== НАВИГАЦИОННОЕ МЕНЮ ========== */
+.main-menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 9997;
+    background: rgba(0, 0, 0, 0.9);
+    -webkit-backdrop-filter: blur(8px); /* Safari */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(55, 240, 92, 0.3);
+    padding: 1rem 2rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-menu:hover {
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 4px 25px rgba(55, 240, 92, 0.3);
+}
+
+.main-menu nav {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-family: var(--font-modern);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.main-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--slime);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--slime);
+}
+
+.main-menu a:hover {
+    color: var(--hover-pink);
+    text-shadow: 0 0 12px rgba(232, 160, 216, 0.9);
+}
+
+.main-menu a:hover::after {
+    width: 100%;
+    background: var(--hover-pink);
+    box-shadow: 0 0 10px var(--hover-pink);
+}
+
+@media (max-width: 768px) {
+    .main-menu ul { gap: 1.2rem; }
+    .main-menu a { font-size: 0.75rem; letter-spacing: 2px; }
+}
+/* ========== РЕТРО-ФИЛЬТР ДЛЯ ФОТО (FILM LOOK) ========== */
+/* Без sepia/hue-rotate/saturate — только дешёвые brightness/contrast */
+.retro-img {
+    filter: brightness(0.85) contrast(1.05);
+    transition: filter 0.4s ease;
+}
+
+.retro-img:hover {
+    filter: brightness(0.95) contrast(1.05);
+}
