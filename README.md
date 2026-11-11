@@ -1,3 +1,5 @@
+![Deploy static site](https://github.com/ratatuy6789/ffd--------/actions/workflows/deploy.yml/badge.svg)
+
 Fan-сайт про стрижки в стиле indie sleaze / grunge: Mullet, Wolfcut, Faux Hawk, Pixie.
 Разделы: главная, стрижки, рекомендации по укладке, галерея, подбор стрижки.
 Лабораторная работа №5 «Организация репозитория в системе управления версиями Git» (ГУАП, дисциплина «Информатика»).
